@@ -21,7 +21,7 @@ var choicesID = [];
 // Store array of item ids for use in shopping inquirer as choicesID
 connection.connect(function(err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
+    // console.log("connected as id " + connection.threadId + "\n");
     var query = connection.query(
         "SELECT * FROM products",
         function(err, res) {
