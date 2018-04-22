@@ -76,7 +76,7 @@ function chooseItem() {
                             logMessage += `                   ---------\n`;
                             logMessage += `Invoice Total    : $ ${invoiceAmt.toFixed(2)}\n`;
                         console.log(logMessage);
-                        depleteStock(updateQuantity, answer.buy_id);
+                        depleteStock(updateQuantity, invoiceAmt.toFixed(2), answer.buy_id);
                     }   else {
                         var logMessage = `${parseInt(answer.buy_quantity)} copies of ${currentProducts[i].product_name} (${currentProducts[i].department_name})\n`; 
                             logMessage += "Insufficient stock! Please try again...\n"
@@ -90,9 +90,9 @@ function chooseItem() {
 
 // Executes mySQL query to update bamazon.products of ordered item with new stock_quantity
 // End mySQL connection
-function depleteStock(newStock, itemID) {
+function depleteStock(newStock, invoiceAmt, itemID) {
         connection.query(
-            `UPDATE products SET stock_quantity = ${newStock} WHERE item_id = ${itemID}`,
+            `UPDATE bamazon.products SET stock_quantity = ${newStock}, product_sales = product_sales + ${invoiceAmt} WHERE item_id = ${itemID};`,
             function(err, res) {
                 if (err) throw err;
                 console.log(`Order Placed! Thank you for choosing Bamazon!\n`);

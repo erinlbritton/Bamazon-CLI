@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS bamazon;
+/*DROP DATABASE IF EXISTS bamazon;
 
-CREATE DATABASE bamazon;
+CREATE DATABASE bamazon;*/
 
 USE bamazon;
 
@@ -11,7 +11,8 @@ CREATE TABLE products (
     product_name VARCHAR(100) NOT NULL,
     department_name VARCHAR(100) NOT NULL,
     price NUMERIC(20,2) NOT NULL,
-    stock_quantity INT NOT NULL
+    stock_quantity INT NOT NULL,
+    product_sales NUMERIC(36,2) DEFAULT 0.00
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
@@ -27,4 +28,5 @@ VALUES 	("Donald in Mathmagic Land", "Movies & TV", 9.99, 38),
         ("Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions", "Books", 13.04, 143)
 ;
 
--- SELECT * FROM bamazon.products;
+SELECT * FROM bamazon.products;
+
